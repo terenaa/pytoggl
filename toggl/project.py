@@ -26,6 +26,12 @@ class Project(Object):
         from .task import TaskList
         return TaskList(self.api, url='projects/%d/tasks' % self.id)
 
+    def get_instance_url(self):
+        return 'projects/%d' % self.id if self.id else 'projects'
+
+    def to_dict(self, attrs):
+        return {'project': attrs}
+
 
 class ProjectUserList(ObjectList):
     """A collection of Project-User mappings."""
